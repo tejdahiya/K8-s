@@ -1,0 +1,36 @@
+#Ubuntu 20.04.1
+
+#This commands for (root) user
+
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+
+
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" >> ~/kubernetes.list
+
+apt install kubeadm=1.18.0-00 --allow-unauthenticated -y
+
+apt install kubectl=1.18.0-00 --allow-unauthenticated --allow-downgrades -y
+
+
+apt install kubelet=1.18.0-00 --allow-unauthenticated --allow-downgrades -y
+
+apt-get install -y kubernetes-cni --allow-unauthenticated
+
+apt install docker.io
+
+kubectl completion bash
+ 
+kubectl completion bash > ~/.bashrc
+
+kubectl completion bash > /etc/bash_completion.d/kubectl
+
+
+# This command for sudo user
+
+mkdir -p $HOME/.kube
+
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
