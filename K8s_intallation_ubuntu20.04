@@ -1,6 +1,6 @@
 #Ubuntu 20.04.1
 
-#This commands for (root) user
+#This commands for (root) user and for master and salve server
 
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 
@@ -22,6 +22,7 @@ apt-get install -y kubernetes-cni --allow-unauthenticated
 
 apt install docker.io
 
+
 kubectl completion bash
  
 kubectl completion bash > ~/.bashrc
@@ -29,7 +30,9 @@ kubectl completion bash > ~/.bashrc
 kubectl completion bash > /etc/bash_completion.d/kubectl
 
 
+
 # This command for sudo user
+# This for master server not for salve 
 
 mkdir -p $HOME/.kube
 
